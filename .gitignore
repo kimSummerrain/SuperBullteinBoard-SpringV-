@@ -32,7 +32,7 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
-/src/main/resources/application.properties
+/src/main/resources/application.properties      #변화를 하더라도 안올림.
 
 ### VS Code ###
 .vscode/

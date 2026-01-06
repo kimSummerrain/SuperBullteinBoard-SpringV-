@@ -3,18 +3,18 @@ package com.example.superbullteinboard.modal;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*; // 롬복 라이브러리 가져오기
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Getter             // 모든 필드의 Getter 자동 생성
-@Setter             // 모든 필드의 Setter 자동 생성
-@NoArgsConstructor  // 기본 생성자 (JPA 필수) 자동 생성
-@AllArgsConstructor // 모든 필드를 포함한 생성자 자동 생성
-@Builder            // 빌더 패턴(.builder().build()) 사용 가능
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -46,5 +46,5 @@ public class User {
     @NotBlank
     private String password;
 
-    // 👇 아래에 있던 50줄 넘는 생성자, Getter, Setter가 전부 사라졌습니다!
+
 }

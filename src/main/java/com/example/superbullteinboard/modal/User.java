@@ -3,12 +3,18 @@ package com.example.superbullteinboard.modal;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.*; // 롬복 라이브러리 가져오기
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity             //일단, 기본으로 유저 클래스에 대해서 정의해주고, 각 객체를 캡슐화. 유효성 검사를 거치고, 형식에 맞는 데이터만.
+@Entity
+@Getter             // 모든 필드의 Getter 자동 생성
+@Setter             // 모든 필드의 Setter 자동 생성
+@NoArgsConstructor  // 기본 생성자 (JPA 필수) 자동 생성
+@AllArgsConstructor // 모든 필드를 포함한 생성자 자동 생성
+@Builder            // 빌더 패턴(.builder().build()) 사용 가능
 public class User {
 
     @Id
@@ -29,7 +35,6 @@ public class User {
     @NotBlank(message = "고객/직원 구분위해 필수 입력")
     private String role;
 
-
     @CreationTimestamp
     @Column(columnDefinition = "TIMESTAMP(0)")
     private LocalDateTime createdAt;
@@ -41,94 +46,5 @@ public class User {
     @NotBlank
     private String password;
 
-
-
-    public User() {
-
-    }
-    public User(String fullName,
-                String email,
-                String phone,
-                String role,
-                String password,
-                LocalDateTime createdAt,
-                LocalDateTime updatedAt) {
-        this.fullName = fullName;
-        this.email = email;
-        this.phone = phone;
-        this.role = role;
-        this.password = password;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }     //set메서드를 통해 받는것처럼 보이는 이유는 스프링부트의 API 덕분.
-          // UserController의 @RequestBody 덕분 본문에 있는 JSON데이터를 USER로 자동 변환.
-
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getContent() { return content; }
-
-    public void setContent(String content) { this.content = content; }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    // 👇 아래에 있던 50줄 넘는 생성자, Getter, Setter가 전부 사라졌습니다!
 }

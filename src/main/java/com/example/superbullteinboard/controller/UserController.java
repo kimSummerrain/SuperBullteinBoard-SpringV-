@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserController {
 
-    // [변경 포인트] @Autowired를 지우고 final을 붙입니다.
+
     private final UserRepository userRepository;
 
     @PostMapping
@@ -30,7 +30,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public User getUserById(@PathVariable("userId") Long id) throws Exception {
-        // ... (내용 동일)
+
         Optional<User> otp = userRepository.findById(id);
         if(otp.isPresent()){
             return otp.get();
